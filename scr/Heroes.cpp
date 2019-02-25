@@ -339,6 +339,105 @@ void Hero::use(string name) {
     Item *item = Search_Items(name);
     list <Item*> :: iterator it;
     for(it = Items.begin(); it!=Items.end();++it) {
-        //finish this one
+        if(item->get_name() == (*it)->get_name()) {
+            cout << endl << "\t\t\t\tRemember Potions can be used only one time. " << item->get_name() << " will be erased from your Inventory." << endl;
+
+            if((*it)->get_name() == "Healing_Potion"){
+                this->set_healthP((*it)->get_rate());
+                if( this->get_healthP() > 200)
+                    this->set_healthP(200);
+            }
+            if((*it)->get_name() == "Strength_Potion") {
+                this->set_strength((*it)->get_rate());
+            }
+            if((*it)->get_name() == "Magic_Potion") {
+                this->set_agility((*it)->get_rate());
+                this->set_dexerity((*it)->get_rate()/5);
+            }
+            if((*it)->get_name() == "Mermaid_Tears") {
+                this->set_strength((*it)->get_rate());
+                this->set_agility((*it)->get_rate()/2);
+                this->set_dexerity((*it)->get_rate()/5);
+            }
+            if((*it)->get_name() == "Ambrosia") {
+                this->set_healthP((*it)->get_rate());
+                    if( this->get_healthP() > 200)
+                        this->set_healthP(200);
+                    
+                    this->set_strength((*it)->get_rate()/2);
+                    this->set_agility((*it)->get_rate()/5);
+                    this->set_dexerity((*it)->get_rate()/5);
+            }
+
+            it = Items.erase(it);
+            break;
+        }
     }
 }
+
+void Hero::use(){
+    if(checkIfEmpty("Potion") == 1) {
+        cout << endl << endl << KRED << "\t\t\t\t\t\t\t W A R N I N G! " << KWHT << endl << endl;
+        cout << "\t\t\t\t\tYou haven't bought any Potions yet, use your first to attack" << endl;
+        return;
+    }
+    checkInvetory("item");
+    cout << endl << "Enter the Name of Potion" << endl;
+    string name;
+    cin >> name;
+    name = searchInvetory(name);
+    this->use(name);
+}
+
+Spell* Hero::castSpell(string name) {
+    Spell *spell = Search_Spells(name);
+
+    this->magicPower -= spell->get_min_magicP();
+    return spell;
+}
+
+Spell* Hero::castSpell() {
+    if(checkIFempty("Spells") == 1) {
+        cout << endl << endl << KRED << "\t\t\t\t\t\t\t W A R N I N G! " << KWHT << endl << endl;
+        cout << "\t\t\t\t\tYou haven't bought any spells yet, use your first to attack" << endl;
+        return NULL;
+    }
+    checkInvetory("spell");
+    cout << endl << "Enter the Name of Spell" << endl;
+    string name;
+    cin >> name;
+    name = searchInventory(name);
+    return this->castSpell(name);
+}
+
+int Hero::checkIfEmpty(string Type) {
+    if(Type == "Items") {
+        if(Items.empty())   return 1;
+    }
+    else if(Type == "Spells") {
+        if(Spells.empty()) return 1;
+    }
+    else if(Type == "Potion") {
+        int sum = 0;
+        list <Item*> :: iterator it;
+        for(it = Items.begin(); it!=Items.end(); i++) {
+            if((*it)->get_classType() == "Potion")
+                sum++;
+        }
+        if(sum == 0)    return 1;
+    }
+    else if(Type == "Weapon") {
+        int sum = 0;
+        list <Item*> :: iterator it;
+        for(it = Items.begin(); it!=Items.end(); it++) {
+            if((*it)->get_classType() == "Armor")
+                sum++;
+        }
+        if(sum==0)  return 1;
+    }
+    return 0;
+}
+
+Hero::~Hero(){}
+
+//class warrior
