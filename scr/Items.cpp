@@ -74,3 +74,28 @@ void Weapon::set_damage(int strength) {
 }
 
 Weapon::~Weapon(){}
+
+Potion::Potion(string name, int c, int level, int RI) : Item(name,c,level), statisticsRI(RI) {}
+
+int Potion::get_rate() {
+    return this->statisticsRI;
+}
+
+string Potion::get_classType() {
+    return "Potion";
+}
+
+Potion::~Potion() {}
+
+//class armor
+Armor::Armor(string name, int c, int level, int RP) : Item(name,c,level), damageRP(RP) {}
+
+int Armor::get_reduction() {
+    return this->damageRP;
+}
+
+string Armor::get_classType() {
+    return "Armor";
+}
+
+Armor::~Armor() {}
