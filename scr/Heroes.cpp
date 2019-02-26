@@ -441,3 +441,54 @@ int Hero::checkIfEmpty(string Type) {
 Hero::~Hero(){}
 
 //class warrior
+
+Warrior::Warrior(string n, int magicP, int str, int ag, int dext, int m, int exp) : Hero(n,magicP,str,ag,dext,m,exp) {}
+
+void Warrior::levelUp() {
+    cout << "\t\t\t\t " << this->name << " just L E V E L E D U P!" << endl << endl << endl;
+    if(this->level >= 10)
+        this->level = 3;
+    else
+        this->level++;
+}
+
+string Warrior::get_classType() {
+    return "Warrior";
+}
+
+Warrior::~Warrior() {}
+
+//class sorcerer
+
+Sorcerer::Sorcerer(string n, int magicP, int str, int ag, int dext, int m, int exp) : Hero(n,magicP,str,ag,dext,m,exp) {}
+
+void Sorcerer::levelUp() {
+    cout << "\t\t\t\t " << this->name << " just L E V E L E D U P!" << endl << endl << endl;
+    if(this->level >= 10)
+        this->level = 3;
+    else 
+        this->level++;
+}
+
+string Sorcerer::get_classType() {
+    return "Sorcerer";
+}
+
+Sorcerer::~Sorcerer() {}
+
+//class paladin
+Paladin::Paladin(string n, int magicP, int str, int ag, int dext, int m, int exp) : Hero(n,magicP,str,ag,dext,m,exp) {}
+
+void Paladin::levelUp() {
+    cout << "\t\t\t\t " << this->name << " just L E V E L E D U P!" << endl << endl << endl;
+    if(this->level >= 10)
+        this->level = 3;
+    else 
+        this->level++;
+}
+
+string Paladin::get_classType() {
+    return "Paladin";
+}
+
+Paladin::~Paladin() {}
