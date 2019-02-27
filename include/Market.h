@@ -12,7 +12,7 @@ private:
 	std:: list <Item*> Potions;
 	std:: list <Spell*> IceSpells;
 	std:: list <Spell*> FireSpells;
-	std:: list <Spell*> LightningSpells;
+	std:: list <Spell*> LightingSpells;
 
 	std:: list <Spell*> SpellsOnSell;
 	std:: list <Item*> ItemOnSell;
